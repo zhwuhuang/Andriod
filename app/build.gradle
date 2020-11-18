@@ -1,0 +1,121 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/wu/WorkSpace/OpenMediation-Android-master/yft.jks')
+            keyAlias 'ytf'
+            keyPassword 'yftyfsz'
+            storePassword 'yftyfsz'
+        }
+        debug {
+            storeFile file('/Users/wu/WorkSpace/OpenMediation-Android-master/yft.jks')
+            storePassword 'yftyfsz'
+            keyPassword 'yftyfsz'
+            keyAlias 'yft'
+        }
+    }
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+
+
+    defaultConfig {
+        applicationId "top.yfsz.yft"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = rootProject.ext.compileOptions.sourceCompatibility
+        targetCompatibility = rootProject.ext.compileOptions.targetCompatibility
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //fb
+    implementation(rootProject.ext.dependencies.facebook) {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads'
+    }
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:19.3.0'
+    //vungle
+    implementation rootProject.ext.dependencies.vungle
+    //AdColony
+    implementation rootProject.ext.dependencies.adcolony
+
+    //Applovin
+    implementation rootProject.ext.dependencies.applovin
+    //MoPub
+    implementation(rootProject.ext.dependencies.mopub) { transitive = true }
+    //TapJoy
+    implementation rootProject.ext.dependencies.tapjoy
+    implementation 'com.google.android.gms:play-services-base:17.4.0'
+    implementation rootProject.ext.dependencies.play_service_ads_identifier
+    //chartboost
+    implementation rootProject.ext.dependencies.chartboost
+    //unity
+    implementation rootProject.ext.dependencies.unity
+    //ironsource
+    implementation rootProject.ext.dependencies.ironsource
+
+    implementation rootProject.ext.dependencies.adtiming
+    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:mtgbid:' + rootProject.ext.dependencies.mtg_version
+
+    implementation rootProject.ext.dependencies.ironsource
+
+    implementation "com.fyber.vamp:core-sdk:${rootProject.ext.dependencies.fyber}"
+    implementation "com.fyber.vamp:video-kit:${rootProject.ext.dependencies.fyber}"
+    implementation "com.fyber.vamp:mraid-kit:${rootProject.ext.dependencies.fyber}"
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation project(path: ':adapter:admob')
+    implementation project(path: ':adapter:adtiming')
+    implementation project(path: ':adapter:unity')
+    implementation project(path: ':adapter:vungle')
+    implementation project(path: ':om-android-sdk')
+    implementation project(path: ':adapter:mopub')
+    implementation project(path: ':adapter:adcolony')
+    implementation project(path: ':adapter:applovin')
+    implementation project(path: ':adapter:facebook')
+    implementation project(path: ':adapter:chartboost')
+    implementation project(path: ':adapter:tapjoy')
+    implementation project(path: ':adapter:mintegral')
+//    implementation(name: 'open_ad_sdk_2.1.5.0', ext: 'aar')
+//    implementation project(path: ':adapter:tiktok')
+    implementation project(path: ':adapter:ironsource')
+
+    //
+    implementation(name: 'open_ad_sdk_3.0.0.1', ext: 'aar')
+    implementation project(path: ':adapter_cn:tiktok')
+    implementation(name: 'GDTSDK.unionNormal.4.211.1081', ext: 'aar')
+    implementation project(path: ':adapter_cn:tencentad')
+    implementation project(path: ':adapter:fyber')
+    implementation project(path: ':miit_mdid_1.0.10')
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
